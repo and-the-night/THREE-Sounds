@@ -36,6 +36,19 @@ if (window.DeviceOrientationEvent) {
   console.log("DeviceOrientationEvent is not supported");
 }
 
+if (window.DeviceMotionEvent) {
+  window.addEventListener("devicemotion", function (event) {
+    const acceleration = event.accelerationIncludingGravity;
+    if (acceleration) {
+      camera.position.x += acceleration.x * 0.01;
+      camera.position.y += acceleration.y * 0.01;
+      camera.position.z += acceleration.z * 0.01;
+    }
+  });
+} else {
+  console.log("DeviceMotionEvent is not supported");
+}
+
 // const controls = new FirstPersonControls(camera, renderer.domElement);
 // controls.lookSpeed = 0.01;
 // controls.movementSpeed = 5;
@@ -95,7 +108,7 @@ scene.add(cube2);
 
 cube.add(sound2);
 
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < 30; i++) {
   const geometry = new THREE.BoxGeometry();
   const material = new THREE.MeshBasicMaterial({
     color: Math.random() * 0xffffff,
