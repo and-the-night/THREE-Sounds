@@ -27,7 +27,7 @@ camera.position.y = 2;
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", function (event) {
     const alpha = event.alpha ? THREE.MathUtils.degToRad(event.alpha) : 0;
-    const beta = event.beta ? THREE.MathUtils.degToRad(event.beta) : 0;
+    const beta = event.beta ? THREE.MathUtils.degToRad(event.beta - 90) : 0;
     const gamma = event.gamma ? THREE.MathUtils.degToRad(event.gamma) : 0;
 
     camera.rotation.set(beta, alpha, 0);
