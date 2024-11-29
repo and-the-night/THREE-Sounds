@@ -31,6 +31,10 @@ if (window.DeviceOrientationEvent) {
     const gamma = event.gamma ? THREE.MathUtils.degToRad(event.gamma) : 0;
 
     camera.rotation.set(beta, alpha, 0);
+
+    document.getElementById("alpha").innerHTML = alpha;
+    document.getElementById("beta").innerHTML = beta;
+    document.getElementById("gamma").innerHTML = gamma;
   });
 } else {
   console.log("DeviceOrientationEvent is not supported");
@@ -43,6 +47,10 @@ if (window.DeviceMotionEvent) {
       camera.position.x += acceleration.x * 0.01;
       camera.position.y += acceleration.y * 0.01;
       camera.position.z += acceleration.z * 0.01;
+
+      document.getElementById("accX").innerHTML = acceleration.x;
+      document.getElementById("accY").innerHTML = acceleration.y;
+      document.getElementById("accZ").innerHTML = acceleration.z;
     }
   });
 } else {
