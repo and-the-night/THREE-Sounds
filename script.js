@@ -42,11 +42,11 @@ if (window.DeviceOrientationEvent) {
 
 if (window.DeviceMotionEvent) {
   window.addEventListener("devicemotion", function (event) {
-    const acceleration = event.acceleration;
+    const acceleration = event.accelerationIncludingGravity;
     if (acceleration) {
-      camera.position.x += acceleration.x * 0.01;
-      camera.position.y += acceleration.y * 0.01;
-      camera.position.z += acceleration.z * 0.01;
+      // camera.position.x += acceleration.x * 0.01;
+      // camera.position.y += acceleration.y * 0.01;
+      // camera.position.z += acceleration.z * 0.01;
 
       document.getElementById("accX").innerHTML = acceleration.x;
       document.getElementById("accY").innerHTML = acceleration.y;
