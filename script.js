@@ -1,5 +1,7 @@
 import * as THREE from "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.module.min.js";
 
+import getStarfield from "./getStarfield.js";
+
 // import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { FirstPersonControls } from "three/addons/controls/FirstPersonControls.js";
@@ -28,7 +30,7 @@ if (window.DeviceOrientationEvent) {
     const beta = event.beta ? THREE.MathUtils.degToRad(event.beta) : 0;
     const gamma = event.gamma ? THREE.MathUtils.degToRad(event.gamma) : 0;
 
-    camera.rotation.set(beta, alpha, -gamma);
+    camera.rotation.set(beta, alpha, 0);
   });
 } else {
   console.log("DeviceOrientationEvent is not supported");
@@ -42,6 +44,9 @@ if (window.DeviceOrientationEvent) {
 
 // const controls = new OrbitControls(camera, renderer.domElement);
 // controls.update();
+
+const stars = getStarfield({ numStars: 2000 });
+scene.add(stars);
 
 const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
@@ -127,5 +132,3 @@ function animate() {
 }
 
 animate();
-
-// comment
