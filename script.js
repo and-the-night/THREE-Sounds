@@ -175,8 +175,8 @@ function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 
-  camera.position.x -= Math.sin(camera.rotation.y) * fowrardVelocity;
-  camera.position.z -= Math.cos(camera.rotation.y) * fowrardVelocity;
+  camera.position.x += Math.sin(camera.rotation.y) * fowrardVelocity;
+  camera.position.z += Math.cos(camera.rotation.y) * fowrardVelocity;
 
   // controls.update(0.1); // update controls
 }
