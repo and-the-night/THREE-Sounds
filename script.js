@@ -33,7 +33,7 @@ if (window.DeviceOrientationEvent) {
     camera.rotation.set(beta, alpha, 0);
 
     document.getElementById("alpha").innerHTML = alpha;
-    document.getElementById("beta").innerHTML = event.beta;
+    document.getElementById("beta").innerHTML = event;
     document.getElementById("gamma").innerHTML = gamma;
   });
 } else {
@@ -42,7 +42,7 @@ if (window.DeviceOrientationEvent) {
 
 if (window.DeviceMotionEvent) {
   window.addEventListener("devicemotion", function (event) {
-    const acceleration = event.accelerationIncludingGravity;
+    const acceleration = event.acceleration;
     if (acceleration) {
       // camera.position.x += acceleration.x * 0.01;
       // camera.position.y += acceleration.y * 0.01;
