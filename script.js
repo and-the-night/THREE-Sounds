@@ -23,6 +23,8 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.y = 2;
 
+let fowrardVelocity = 0;
+
 // Get Phone Orientation
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", function (event) {
@@ -48,8 +50,7 @@ if (window.DeviceMotionEvent) {
       // camera.position.y += acceleration.y * 0.01;
       // camera.position.z += acceleration.z * 0.01;
 
-      camera.position.x -= Math.sin(camera.rotation.y) * acceleration.z;
-      camera.position.z -= Math.cos(camera.rotation.y) * acceleration.z;
+      fowrardVelocity += acceleration.z * 0.01;
 
       document.getElementById("accX").innerHTML = acceleration.x;
       document.getElementById("accY").innerHTML = acceleration.y;
@@ -171,6 +172,9 @@ function animate() {
   renderer.render(scene, camera);
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
+
+  camera.position.x -= Math.sin(camera.rotation.y) * fowrardVelocity;
+  camera.position.z -= Math.cos(camera.rotation.y) * fowrardVelocity;
   // camera.position.z += 0.01;
   // controls.update(0.1); // update controls
 }
