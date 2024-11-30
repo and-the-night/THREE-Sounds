@@ -52,6 +52,8 @@ if (window.DeviceMotionEvent) {
 
       if (Math.abs(acceleration.z) > 1) {
         fowrardVelocity += acceleration.z * 0.01;
+      } else {
+        fowrardVelocity = 0;
       }
 
       document.getElementById("accX").innerHTML = acceleration.x;
