@@ -51,7 +51,7 @@ if (window.DeviceMotionEvent) {
       // camera.position.z += acceleration.z * 0.01;
 
       if (Math.abs(acceleration.z) > 0.5) {
-        fowrardVelocity += acceleration.z * 0.1;
+        fowrardVelocity += Math.abs(acceleration.z) * 0.03125;
       } else {
         fowrardVelocity = 0;
       }
