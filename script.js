@@ -50,7 +50,7 @@ if (window.DeviceMotionEvent) {
       // camera.position.y += acceleration.y * 0.01;
       // camera.position.z += acceleration.z * 0.01;
 
-      fowrardVelocity += acceleration.z * 0.01;
+      fowrardVelocity += acceleration.z;
 
       document.getElementById("accX").innerHTML = acceleration.x;
       document.getElementById("accY").innerHTML = acceleration.y;
