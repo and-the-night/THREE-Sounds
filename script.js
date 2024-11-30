@@ -30,7 +30,7 @@ if (window.DeviceOrientationEvent) {
     const beta = event.beta ? THREE.MathUtils.degToRad(event.beta - 90) : 0;
     const gamma = event.gamma ? THREE.MathUtils.degToRad(event.gamma) : 0;
 
-    camera.rotation.set(beta, alpha, 0);
+    camera.rotation.set(beta, alpha, -gamma);
 
     document.getElementById("alpha").innerHTML = alpha;
     document.getElementById("beta").innerHTML = beta;
@@ -48,6 +48,9 @@ if (window.DeviceMotionEvent) {
       // camera.position.y += acceleration.y * 0.01;
       // camera.position.z += acceleration.z * 0.01;
 
+      camera.position.x -= Math.sin(camera.rotation.y) * acceleration.z;
+      camera.position.z -= Math.cos(camera.rotation.y) * acceleration.z;
+
       document.getElementById("accX").innerHTML = acceleration.x;
       document.getElementById("accY").innerHTML = acceleration.y;
       document.getElementById("accZ").innerHTML = acceleration.z;
@@ -56,6 +59,27 @@ if (window.DeviceMotionEvent) {
 } else {
   console.log("DeviceMotionEvent is not supported");
 }
+
+document.addEventListener("keydown", function (event) {
+  const rotationSpeed = 0.05;
+  const moveSpeed = 0.1;
+  switch (event.key) {
+    case "ArrowLeft":
+      camera.rotation.y += rotationSpeed;
+      break;
+    case "ArrowRight":
+      camera.rotation.y -= rotationSpeed;
+      break;
+    case "ArrowUp":
+      camera.position.x -= Math.sin(camera.rotation.y) * moveSpeed;
+      camera.position.z -= Math.cos(camera.rotation.y) * moveSpeed;
+      break;
+    case "ArrowDown":
+      camera.position.x += Math.sin(camera.rotation.y) * moveSpeed;
+      camera.position.z += Math.cos(camera.rotation.y) * moveSpeed;
+      break;
+  }
+});
 
 // const controls = new FirstPersonControls(camera, renderer.domElement);
 // controls.lookSpeed = 0.01;
@@ -117,7 +141,8 @@ scene.add(cube2);
 cube.add(sound2);
 
 for (let i = 0; i < 30; i++) {
-  const geometry = new THREE.BoxGeometry();
+  const size = Math.random() * 3 + 1;
+  const geometry = new THREE.BoxGeometry(size, size, size);
   const material = new THREE.MeshBasicMaterial({
     color: Math.random() * 0xffffff,
   });
@@ -146,10 +171,8 @@ function animate() {
   renderer.render(scene, camera);
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
-  // camera.rotation.y += 0.01;
+  // camera.position.z += 0.01;
   // controls.update(0.1); // update controls
-
-  // cube.position.z += 0.01;
 }
 
 animate();
