@@ -33,7 +33,7 @@ if (window.DeviceOrientationEvent) {
     camera.rotation.set(beta, alpha, 0);
 
     document.getElementById("alpha").innerHTML = alpha;
-    document.getElementById("beta").innerHTML = event;
+    document.getElementById("beta").innerHTML = beta;
     document.getElementById("gamma").innerHTML = gamma;
   });
 } else {
